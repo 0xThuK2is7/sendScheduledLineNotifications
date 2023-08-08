@@ -15,11 +15,15 @@ function sendScheduledLineNotifications() {
 
   for (const row of dataRange) {
     const date = Utilities.formatDate(row[1], timeZone, 'dd/MM/yyyy');
-    const originalTime = Utilities.formatDate(row[2], timeZone, 'HH:mm'); // Original time from the sheet
-    const timeParts = originalTime.split(':');
-    const hours = parseInt(timeParts[0]);
-    const minutes = parseInt(timeParts[1]) - 17; // Subtract 17 minutes
-    const adjustedTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`; // Format adjusted time
+    const originalTime = row[2]; // Original time from the sheet in "HH:mm:ss" format
+
+    // Adjust the timestamp date, month, and year while keeping the time unchanged
+    const adjustedTimestamp = new Date(originalTime);
+    adjustedTimestamp.setFullYear(now.getFullYear());
+    adjustedTimestamp.setMonth(now.getMonth());
+    adjustedTimestamp.setDate(now.getDate());
+
+    const adjustedTime = Utilities.formatDate(adjustedTimestamp, timeZone, 'HH:mm');
 
     const msg = row[3];
     const imgUrl = row[4];
