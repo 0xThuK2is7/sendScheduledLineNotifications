@@ -30,7 +30,7 @@ function sendScheduledLineNotifications() {
     const imgID = imgUrl.split('https://drive.google.com/open?id=')[1];
 
     if (today === date && currentTime === adjustedTime) {
-      const message = `\nแจ้งเตือน : ${msg}`;
+      const message = `\n${msg}`;
       const image = DriveApp.getFileById(imgID).getBlob();
       sendLineNotify(message, image, token);
     }
