@@ -1,3 +1,5 @@
+// แบบมี Sticker
+// หา PackageId กับ StickerID ได้ที่ https://developers.line.biz/en/docs/messaging-api/sticker-list/#sticker-definitions
 function sendScheduledLineNotifications() {
   const tokens = ['YOUR_LINE_ACCESS_TOKEN'];
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
