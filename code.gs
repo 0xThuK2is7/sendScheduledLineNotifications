@@ -36,7 +36,7 @@ function sendScheduledLineNotifications() {
         if (imgID) {
           image = DriveApp.getFileById(imgID).getBlob();
         }
-        sendLineNotify(message, image, token, stickerPackageId, stickerId);
+        sendLineNotify(message, image, token);
     }
     console.log(today,date,currentTime,adjustedTime);
   }
