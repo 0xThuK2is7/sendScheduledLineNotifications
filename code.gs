@@ -16,7 +16,7 @@ function sendScheduledLineNotifications() {
 
   for (const row of dataRange) {
     const date = Utilities.formatDate(row[1], timeZone, 'dd/MM/yyyy'); // column B
-    const originalTime = row[2]; // Original time from the sheet in "HH:mm:ss" format // colum C
+    const originalTime = row[2]; // colum C
 
     // Adjust the timestamp date, month, and year while keeping the time unchanged
     const adjustedTimestamp = new Date(originalTime);
