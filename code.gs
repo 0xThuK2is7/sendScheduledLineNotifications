@@ -15,6 +15,7 @@ function sendScheduledLineNotifications() {
   const currentTime = Utilities.formatDate(now, timeZone, 'HH:mm');
 
   for (const row of dataRange) {
+    // column A = row[0], column B = row[1], column C = row[2], ...
     const date = Utilities.formatDate(row[1], timeZone, 'dd/MM/yyyy'); // column B
     const originalTime = row[2]; // colum C
 
