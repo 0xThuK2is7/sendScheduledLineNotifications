@@ -1,3 +1,4 @@
+// แบบไม่มี Sticker
 function sendScheduledLineNotifications() {
   const token = 'YOUR_LINE_ACCESS_TOKEN';
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
