@@ -8,15 +8,15 @@ function sendScheduledLineNotifications() {
   const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
   const sheet = spreadsheet.getSheetByName(sheetName);
   const lastRow = sheet.getLastRow();
-  const dataRange = sheet.getRange(2, 1, lastRow - 1, 5).getValues(); // Start from row 2 and get columns A to E
+  const dataRange = sheet.getRange(2, 1, lastRow - 1, 5).getValues(); // 5 หมายถึง columns A ถึง E
 
   const now = new Date();
   const today = Utilities.formatDate(now, timeZone, 'dd/MM/yyyy');
   const currentTime = Utilities.formatDate(now, timeZone, 'HH:mm');
 
   for (const row of dataRange) {
-    const date = Utilities.formatDate(row[1], timeZone, 'dd/MM/yyyy');
-    const originalTime = row[2]; // Original time from the sheet in "HH:mm:ss" format
+    const date = Utilities.formatDate(row[1], timeZone, 'dd/MM/yyyy'); // column B
+    const originalTime = row[2]; // Original time from the sheet in "HH:mm:ss" format // colum C
 
     // Adjust the timestamp date, month, and year while keeping the time unchanged
     const adjustedTimestamp = new Date(originalTime);
@@ -26,8 +26,8 @@ function sendScheduledLineNotifications() {
 
     const adjustedTime = Utilities.formatDate(adjustedTimestamp, timeZone, 'HH:mm');
 
-    const msg = row[3];
-    const imgUrl = row[4];
+    const msg = row[3]; // column D
+    const imgUrl = row[4]; // column E
     const imgID = extractImageID(imgUrl); // Extract the image ID from the URL
 
     if (today === date && currentTime === adjustedTime) {
