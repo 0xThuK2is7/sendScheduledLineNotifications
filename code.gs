@@ -1,7 +1,7 @@
 // แบบไม่มี Sticker
 function sendScheduledLineNotifications() {
-  const token = 'tVu3TIVpsBepe9vC12JW8IwvMYJL0h7TVrZbLeejJsr';
-  const spreadsheetId = '1pWXgKA3ynV7Uh_azBJgGmIxF-hhX4DsapxCSCxZvn6c';
+  const token = '';
+  const spreadsheetId = '';
   const sheetName = 'การตอบแบบฟอร์ม 1';
   const timeZone = 'GMT+7'; // Adjust to your desired time zone
 
