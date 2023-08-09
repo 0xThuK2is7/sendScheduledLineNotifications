@@ -1,13 +1,19 @@
 // แบบไม่มี Sticker
 function sendScheduledLineNotifications() {
-  const token = 'YOUR_LINE_ACCESS_TOKEN';
-  const spreadsheetId = 'YOUR_SPREADSHEET_ID';
-  const sheetName = 'YOUR_SHEET_NAME';
+  const token = 'tVu3TIVpsBepe9vC12JW8IwvMYJL0h7TVrZbLeejJsr';
+  const spreadsheetId = '1pWXgKA3ynV7Uh_azBJgGmIxF-hhX4DsapxCSCxZvn6c';
+  const sheetName = 'การตอบแบบฟอร์ม 1';
   const timeZone = 'GMT+7'; // Adjust to your desired time zone
 
   const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
   const sheet = spreadsheet.getSheetByName(sheetName);
   const lastRow = sheet.getLastRow();
+  
+  if (lastRow < 2) {
+    console.log('No data available.');
+    return;
+  }
+
   const dataRange = sheet.getRange(2, 1, lastRow - 1, 5).getValues(); // 5 หมายถึง columns A ถึง E
 
   const now = new Date();
