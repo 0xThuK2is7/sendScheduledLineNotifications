@@ -26,6 +26,7 @@ function sendScheduledLineNotifications() {
     const adjustedTime = Utilities.formatDate(adjustedTimestamp, timeZone, 'HH:mm');
 
     const msg = row[3];
+    const imgUrl = row[4];
     const imgID = extractImageID(imgUrl); // Extract the image ID from the URL
 
     if (today === date && currentTime === adjustedTime) {
