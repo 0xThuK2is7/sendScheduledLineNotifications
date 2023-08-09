@@ -26,16 +26,24 @@ function sendScheduledLineNotifications() {
     const adjustedTime = Utilities.formatDate(adjustedTimestamp, timeZone, 'HH:mm');
 
     const msg = row[3];
-    const imgUrl = row[4];
-    const imgID = imgUrl.split('https://drive.google.com/open?id=')[1];
+    const imgID = extractImageID(imgUrl); // Extract the image ID from the URL
 
     if (today === date && currentTime === adjustedTime) {
-      const message = `\n${msg}`;
-      const image = DriveApp.getFileById(imgID).getBlob();
-      sendLineNotify(message, image, token);
+        const message = `\n${msg}`;
+        const image = null;
+
+        if (imgID) {
+          image = DriveApp.getFileById(imgID).getBlob();
+        }
+        sendLineNotify(message, image, token, stickerPackageId, stickerId);
     }
     console.log(today,date,currentTime,adjustedTime);
   }
+}
+
+function extractImageID(url) {
+  const matches = url.match(/[-\w]{25,}/); // Extract the image ID from the URL
+  return matches ? matches[0] : null;
 }
 
 function sendLineNotify(message, image, token) {
