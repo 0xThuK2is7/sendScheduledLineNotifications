@@ -7,7 +7,7 @@ function sendScheduledLineNotifications() {
   const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
   const sheet = spreadsheet.getSheetByName(sheetName);
   const lastRow = sheet.getLastRow();
-  const dataRange = sheet.getRange(2, 1, lastRow - 1, 7).getValues(); // Start from row 2 and get columns A to E (-1, 5)
+  const dataRange = sheet.getRange(2, 1, lastRow - 1, 7).getValues(); // Start from row 2 and get columns A to H
 
   const now = new Date();
   const today = Utilities.formatDate(now, timeZone, 'dd/MM/yyyy');
@@ -24,22 +24,31 @@ function sendScheduledLineNotifications() {
     adjustedTimestamp.setDate(now.getDate());
 
     const adjustedTime = Utilities.formatDate(adjustedTimestamp, timeZone, 'HH:mm');
-    
     const stickerPackageId = row[5].toString();
     const stickerId = row[6].toString();
-
     const msg = row[3];
+
     const imgUrl = row[4];
-    const imgID = imgUrl.split('https://drive.google.com/open?id=')[1];
+    const imgID = extractImageID(imgUrl); // Extract the image ID from the URL
 
-    if (today === date && currentTime === adjustedTime) {
-      const message = `\n${msg}`;
-      const image = DriveApp.getFileById(imgID).getBlob();
-      sendLineNotify(message, image, token, stickerPackageId, stickerId);
+  for (const token of tokens) {
+      if (today === date && currentTime === adjustedTime) {
+        const message = `\n${msg}`;
+        const image = null;
+
+        if (imgID) {
+          image = DriveApp.getFileById(imgID).getBlob();
+        }
+        sendLineNotify(message, image, token, stickerPackageId, stickerId);
+      }
+      console.log(today, date, currentTime, adjustedTime, stickerPackageId, stickerId, imgID);
     }
-
-    console.log(today, date, currentTime, adjustedTime, stickerPackageId, stickerId);
   }
+}
+
+function extractImageID(url) {
+  const matches = url.match(/[-\w]{25,}/); // Extract the image ID from the URL
+  return matches ? matches[0] : null;
 }
 
 function sendLineNotify(message, image, token, stickerPackageId, stickerId) {
@@ -55,3 +64,4 @@ function sendLineNotify(message, image, token, stickerPackageId, stickerId) {
   };
   UrlFetchApp.fetch('https://notify-api.line.me/api/notify', options);
 }
+
