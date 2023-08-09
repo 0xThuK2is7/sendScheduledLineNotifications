@@ -10,6 +10,12 @@ function sendScheduledLineNotifications() {
   const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
   const sheet = spreadsheet.getSheetByName(sheetName);
   const lastRow = sheet.getLastRow();
+
+  if (lastRow < 2) {
+    console.log('No data available.');
+    return;
+  }
+
   const dataRange = sheet.getRange(2, 1, lastRow - 1, 7).getValues(); // Start from row 2 and get columns A to H
 
   const now = new Date();
@@ -67,4 +73,3 @@ function sendLineNotify(message, image, token, stickerPackageId, stickerId) {
   };
   UrlFetchApp.fetch('https://notify-api.line.me/api/notify', options);
 }
-
