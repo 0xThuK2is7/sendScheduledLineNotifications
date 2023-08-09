@@ -1,7 +1,8 @@
 // แบบมี Sticker
 // หา PackageId กับ StickerID ได้ที่ https://developers.line.biz/en/docs/messaging-api/sticker-list/#sticker-definitions
+// ส่งแบบหลายกลุ่ม
 function sendScheduledLineNotifications() {
-  const tokens = ['YOUR_LINE_ACCESS_TOKEN'];
+  const tokens = ['YOUR_LINE_ACCESS_TOKEN_1', 'YOUR_LINE_ACCESS_TOKEN_2', 'YOUR_LINE_ACCESS_TOKEN_3'];
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const timeZone = 'GMT+7'; // Adjust to your desired time zone
