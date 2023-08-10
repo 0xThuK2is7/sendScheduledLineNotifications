@@ -1,8 +1,8 @@
 // แบบไม่มี Sticker
 function sendScheduledLineNotifications() {
-  const token = '';
-  const spreadsheetId = '';
-  const sheetName = 'การตอบแบบฟอร์ม 1';
+  const token = 'YOUR_LINE_ACCESS_TOKEN';
+  const spreadsheetId = 'YOUR_SPREADSHEET_ID';
+  const sheetName = 'YOUR_SHEET_NAME';
   const timeZone = 'GMT+7'; // Adjust to your desired time zone
 
   const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
